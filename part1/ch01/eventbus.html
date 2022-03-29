@@ -14,7 +14,8 @@
   <script>
     Vue.component('child-component', {
       //template 내부 값을 <div></div> 로 한번 더 감싸주면 된다.
-      template: `<div><button v-on:click="showLog">show</button> <div>{{propsdata}}</div></div>`,
+      template: `<div><button v-on:click="showLog">show</button>
+        <div>{{propsdata}}</div></div>`,
       props: ['propsdata'],
       methods: {
         showLog: function() {
