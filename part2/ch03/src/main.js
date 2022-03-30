@@ -9,9 +9,9 @@ Vue.config.productionTip = false;
 Vue.use(VueRouter);
 
 const routes = [
-    {path: "/", component: MainPage},
-    {path: "/login", component: LoginPage},
-    {path: "/profile", component: ProfilePage}
+    { path: "/", component: MainPage },
+    { path: "/login", component: LoginPage },
+    { path: "/profile", component: ProfilePage }
 ];
 
 const router = new VueRouter({
