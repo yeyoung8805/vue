@@ -1,11 +1,24 @@
 <template>
-  <div>
-    <h1>This is Profile Page!</h1>
+  <div class="profile">
+    <h1>Profile</h1>
+    <div>{{ email }}</div>
+    <button @click="logout">log out</button> <!-- @ 은 v-on 과 같다. -->
   </div>
 </template>
 
 <script>
 export default {
-
+  data() {
+    return {
+      email: localStorage.getItem('email')
+    }
+  },
+  methods: {
+    logout() {
+      localStorage.removeItem('token')
+      localStorage.removeItem('email')
+      this.$router.push('/')
+    }
+  }
 }
 </script>

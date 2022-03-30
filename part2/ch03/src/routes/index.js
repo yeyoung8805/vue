@@ -5,8 +5,18 @@ import ProfilePage from "@/pages/ProfilePage";
 
 const routes = [
   { path: "/", component: MainPage },
-  { path: "/login", component: LoginPage },
-  { path: "/profile", component: ProfilePage }
+  { path: '/login', component: LoginPage },
+  {
+    path: '/profile',
+    component: ProfilePage,
+    beforeEnter: (to, from, next) => { //내비게이션 가드. vue의 생명주기 이용했다.
+      if (localStorage.getItem('token')) {
+        next();
+      } else {
+        next('/login');
+      }
+    },
+  },
 ];
 
 const router = new VueRouter({
