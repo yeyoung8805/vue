@@ -1,8 +1,10 @@
 var express = require('express'); //import express from 'express' 와 같은 의미
 var router = express.Router();
 
-router.get('/first', function(req, res) {
+router.get('/user/:id', function(req, res) {
+  const id = req.params.id;
   const obj = {
+    id: id,
     name: 'John',
     age: 30,
     job: 'developer',
