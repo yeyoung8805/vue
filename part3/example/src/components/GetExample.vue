@@ -1,41 +1,28 @@
 <template>
   <div>
+    <button @click="loadData">load</button>
     <ul>
-      <li>
-        <button @click="get">get</button>
-      </li>
+      <li v-for="(name, index) in names" :key="index">{{ index + 1 }}. {{ name }}</li>
     </ul>
-    <code id="result"></code>
   </div>
 </template>
+
 <script>
-import axios from "axios";
+import axios from 'axios'
+import { ref, onMounted } from 'vue'
+
 export default {
   setup() {
-    const headers = {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    };
+    const names = ref(['John', 'Jane', 'Joe'])
 
-    function showResult(json) {
-      document.getElementById("result").innerHTML = JSON.stringify(json);
+    async function loadData() {
+      const result = await axios.get('https://jsonplaceholder.typicode.com/posts/1/comments');
+      names.value = result.data.map(comment => comment.name)
     }
-
-    function get() {
-      console.log("get");
-      fetch("https://jsonplaceholder.typicode.com/posts/1/comments", {
-        method: "GET",
-        headers,
-      })
-        .then(function (response) {
-          return response.json();
-        })
-        .then((json) => {
-          showResult(json);
-        });
+    onMounted(loadData());
+    return {
+      names, loadData
     }
-
-    return { get };
   },
-};
+}
 </script>
