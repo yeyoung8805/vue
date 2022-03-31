@@ -111,5 +111,9 @@ export default {
 
 <style scoped>
 /* todo */
-
+button {
+  font-size: calc(10px + 2vmin);
+  width: 80px;
+  margin: 2px;
+}
 </style>
